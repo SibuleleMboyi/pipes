@@ -5,9 +5,17 @@ import {Pipe, PipeTransform} from "@angular/core";
   standalone: true,
 })
 export class TemperaturePipe implements PipeTransform{
-    transform(value: any, ...args: any[]) {
+  transform(value: string | number, ...args: any[]) {
         //throw new Error("Method not implemented.");
-      return value + '- transformed'
+      let val: number;
+      if( typeof  value === 'string') {
+        val = parseFloat(value);
+      } else {
+        val = value;
+      }
+
+      const outputTemp = val + (9/5) + 32;
+      return `${outputTemp} °F`
     }
 
 }
